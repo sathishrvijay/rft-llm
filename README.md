@@ -12,30 +12,70 @@ rft-llm/
 ├── tinker/             # Thinking Machines Tinker (placeholder)
 ├── openai_rft/         # OpenAI RFT API (placeholder)
 ├── slurm/              # SLURM job scripts
+│   ├── setup_venv.slurm    # SLURM job to set up venv
+│   ├── setup_venv.sh       # Standalone venv setup script
+│   ├── train_skyrl.slurm   # Training job script
+│   └── prepare_gsm8k.slurm # Dataset preparation script
 ├── logs/               # Training logs
 ├── checkpoints/        # Model checkpoints
 ├── data/               # Datasets
-├── requirements.txt    # Python dependencies
+├── pyproject.toml      # Project dependencies (preferred)
+├── requirements.txt    # Python dependencies (alternative)
 └── README.md           # This file
 ```
 
 ## Setup
 
-### 1. Activate Virtual Environment
+### Option 1: Automated Setup (Recommended)
 
-The repository uses a virtual environment named `rftvenv`:
+#### On SLURM Cluster
+
+Submit a SLURM job to set up the virtual environment:
 
 ```bash
+sbatch slurm/setup_venv.slurm
+```
+
+This will create `rftvenv` and install all dependencies. Check the log file in `logs/setup_venv_<JOB_ID>.out` for progress.
+
+#### On Local Machine or Login Node
+
+Run the setup script directly:
+
+```bash
+bash slurm/setup_venv.sh
+```
+
+Or use pip with pyproject.toml:
+
+```bash
+python3 -m venv rftvenv
+source rftvenv/bin/activate
+pip install -e .
+```
+
+### Option 2: Manual Setup
+
+#### 1. Create Virtual Environment
+
+```bash
+python3 -m venv rftvenv
 source rftvenv/bin/activate
 ```
 
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
+Using pyproject.toml (recommended):
+```bash
+pip install -e .
+```
+
+Or using requirements.txt:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Verify Installation
+#### 3. Verify Installation
 
 ```bash
 python -c "import torch; print(f'PyTorch: {torch.__version__}')"
@@ -86,6 +126,16 @@ sbatch slurm/train_skyrl.slurm
 ```
 
 ## SLURM Usage
+
+### Initial Setup on SLURM
+
+First, set up the virtual environment on the SLURM cluster:
+
+```bash
+sbatch slurm/setup_venv.slurm
+```
+
+Wait for the job to complete, then verify the venv was created successfully.
 
 ### Training Job
 
