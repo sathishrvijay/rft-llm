@@ -1,0 +1,41 @@
+# GSM8K dataset configuration following SkyRL examples
+
+dataset:
+  name: "gsm8k"
+  source: "openai/gsm8k"  # HuggingFace dataset
+  split: "main"
+  
+  # Dataset preparation settings
+  preparation:
+    output_dir: "../data/gsm8k"
+    format: "skyrl"  # Format for SkyRL training pipeline
+    
+  # Training split configuration
+  train_split: 0.9
+  eval_split: 0.1
+  
+  # Prompt template for GSM8K math problems
+  prompt_template: |
+    Solve the following math problem step by step.
+    
+    Problem: {question}
+    
+    Solution:
+
+# Environment configuration for GSM8K
+environment:
+  type: "math_reasoning"
+  reward_fn: "exact_match"  # Reward based on exact answer match
+  max_steps: 10
+  
+  # Evaluation metrics
+  metrics:
+    - "exact_match"
+    - "final_answer_extraction"
+    
+# Dataset-specific training adjustments
+training_adjustments:
+  # GSM8K problems can be longer, adjust batch size if needed
+  max_sequence_length: 2048
+  batch_size_multiplier: 1.0  # Can reduce if OOM
+
