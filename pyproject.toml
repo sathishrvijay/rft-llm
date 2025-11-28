@@ -15,7 +15,6 @@ dependencies = [
     
     # SkyRL Stack
     "skyrl",
-    "skyrl-gym",
     
     # GPU Support
     "torch==2.5.0",

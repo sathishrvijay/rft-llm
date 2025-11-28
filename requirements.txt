@@ -9,7 +9,6 @@ deepspeed>=0.13.0
 
 # SkyRL Stack
 skyrl
-skyrl-gym
 
 # GPU Support
 torch==2.5.0
