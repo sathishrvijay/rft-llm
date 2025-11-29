@@ -41,7 +41,7 @@ dependencies = [
     # gymnasium[atari] pulls in shimmy[atari] which has conflicting ale-py requirements
     # Pin shimmy[atari] to latest version that works with gymnasium
     "shimmy[atari]>=0.2.1",
-    "ale-py~=0.8.1",  # Required by shimmy[atari]>=0.2.1
+    "ale-py>=0.8.1",  # Required by shimmy[atari]>=0.2.1
     
 ]
 
