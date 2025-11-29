@@ -65,13 +65,8 @@ echo "Installing dependencies from pyproject.toml..."
 if [ -f "$PROJECT_ROOT/pyproject.toml" ]; then
     pip install -e "$PROJECT_ROOT"
 else
-    echo "WARNING: pyproject.toml not found, falling back to requirements.txt"
-    if [ -f "$PROJECT_ROOT/requirements.txt" ]; then
-        pip install -r "$PROJECT_ROOT/requirements.txt"
-    else
-        echo "ERROR: Neither pyproject.toml nor requirements.txt found!"
-        exit 1
-    fi
+    echo "ERROR: pyproject.toml not found!"
+    exit 1
 fi
 
 # Verify installation

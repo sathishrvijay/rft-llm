@@ -56,7 +56,8 @@ if [ -d "$VENV_PATH" ]; then
         if [ -f "$PROJECT_ROOT/pyproject.toml" ]; then
             pip install -e "$PROJECT_ROOT"
         else
-            pip install -r "$PROJECT_ROOT/requirements.txt"
+            echo -e "${RED}ERROR: pyproject.toml not found!${NC}"
+            exit 1
         fi
         exit 0
     fi
@@ -83,13 +84,8 @@ echo "Installing dependencies from pyproject.toml..."
 if [ -f "$PROJECT_ROOT/pyproject.toml" ]; then
     pip install -e "$PROJECT_ROOT"
 else
-    echo -e "${YELLOW}WARNING: pyproject.toml not found, falling back to requirements.txt${NC}"
-    if [ -f "$PROJECT_ROOT/requirements.txt" ]; then
-        pip install -r "$PROJECT_ROOT/requirements.txt"
-    else
-        echo -e "${RED}ERROR: Neither pyproject.toml nor requirements.txt found!${NC}"
-        exit 1
-    fi
+    echo -e "${RED}ERROR: pyproject.toml not found!${NC}"
+    exit 1
 fi
 
 # Verify installation

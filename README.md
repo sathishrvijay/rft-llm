@@ -19,8 +19,7 @@ rft-llm/
 ├── logs/               # Training logs
 ├── checkpoints/        # Model checkpoints
 ├── data/               # Datasets
-├── pyproject.toml      # Project dependencies (preferred)
-├── requirements.txt    # Python dependencies (alternative)
+├── pyproject.toml      # Project dependencies
 └── README.md           # This file
 ```
 
@@ -65,14 +64,8 @@ source rftvenv/bin/activate
 
 #### 2. Install Dependencies
 
-Using pyproject.toml (recommended):
 ```bash
 pip install -e .
-```
-
-Or using requirements.txt:
-```bash
-pip install -r requirements.txt
 ```
 
 #### 3. Verify Installation
