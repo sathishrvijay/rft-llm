@@ -11,8 +11,8 @@ deepspeed>=0.13.0
 skyrl
 
 # GPU Support
-torch==2.5.0
-torchvision==0.20.0
+torch==2.4.0
+torchvision==0.19.1
 
 # Monitoring
 wandb>=0.16.0

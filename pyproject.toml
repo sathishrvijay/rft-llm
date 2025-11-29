@@ -18,7 +18,7 @@ dependencies = [
     
     # GPU Support
     "torch==2.4.0",
-    "torchvision==0.20.0",
+    "torchvision==0.19.1",
     
     # Monitoring
     "wandb>=0.16.0",
